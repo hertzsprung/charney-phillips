@@ -9,7 +9,7 @@ On a finite volume mesh, variables are ordinarily placed at cell centres or cell
 ## who uses unusual meshes?
 
 * unstructured (triangular) meshes ([Smolarkiewicz and Szmelter 2011](https://doi.org/10.2478/s11600-011-0043-z))
-* locally-refined block-structured meshes ([Yamazaki and Satomura 2012](https://doi.org/10.1002/asl.358), Hubbard and Nikiforakis?)
+* locally-refined block-structured meshes ([Yamazaki and Satomura 2012](https://doi.org/10.1002/asl.358), [Hubbard and Nikiforakis 2003](https://doi.org/10.1175//2568.1)?)
 * other AMR: behrens1996,1998 and giraldo2000 on triangular grids, see hubbard-nikiforakis
 * grid nesting?
 
