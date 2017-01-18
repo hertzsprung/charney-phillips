@@ -8,18 +8,23 @@ On a finite volume mesh, variables are ordinarily placed at cell centres or cell
 
 ## Mesh refinement
 
+Controlling the vertical mesh spacing near the ground is straightforward when terrain-following meshes are used because the mesh is organised in rows of cells that are uninterrupted by mountain peaks.  With other mesh types such as cut-cell meshes or slanted-cell meshes, controlling vertical mesh spacing is less straightforward because mountain peaks interrupt the rows of cells nearest sea level.   On such a mesh, if fine vertical mesh spacing was used near sea level and coarse mesh spacing used aloft, then the mesh above a high-altitude mountain range would have coarse spacing and boundary layer processes would be poorly resolved.
+
+Mesh refinement could help to increase the resolution of the boundary layer above high-altitude mountain ranges for cut-cell meshes and slanted-cell meshes.
 Mesh refinement has received growing attention in atmospheric modelling literature because it could enable atmospheric models to produce more accurate forecasts with less computation.
-While much of this literature concentrates on horizontal refinement, some investigations have been made into vertical refinement on two-dimensional `x`–`z` planes: [Müller et al. 2013](https://doi.org/10.1016/j.jcp.2012.10.038) have used conforming refinement of triangular meshes for simulating the standard rising bubble and density current test cases, and [Yamazaki & Satomura 2012](https://doi.org/10.1002/asl.358) have used block-refinement to better resolve idealised mountains.
+While much of this literature concentrates on horizontal refinement, some investigations have been made into vertical refinement on two-dimensional `x`–`z` planes: [Müller et al. 2013](https://doi.org/10.1016/j.jcp.2012.10.038) have used conforming refinement of triangular meshes for simulating the standard rising bubble and density current test cases, and [Yamazaki & Satomura 2012](https://doi.org/10.1002/asl.358) have used nonconforming block-refinement to better resolve the atmosphere immediately above idealised mountains.
 
-TODO: talk about tf coords and how they naturally allow high res near the ground.  then talk about alternatives (cut-cells, slanted-cells) and how mesh refinement could be a route for achieving high res near the ground for such meshes.
+<!---TODO: is there any other literature about high resolution near the ground for cut-cells?-->
+
+According to [Thuburn and Woollings 2005](https://doi.org/10.1016/j.jcp.2004.08.018), the vertical discretisation that Yamazaki & Satomura 2012 used supports computational modes and instabilities, although these errors were not excited by the test cases performed by Yamazaki & Satomura 2012.  The Charney--Phillips staggering is unsusceptible to such errors, but we are not aware of any existing literature that combines mesh refinement with a Charney--Phillips staggering.
+
+We propose to develop a generalised Charney--Phillips staggering for arbitrarily-structured meshes.  By allowing for any mesh structure we can support almost any type of mesh including conforming and non-conforming mesh refinement, terrain-following meshes, cut-cell and slanted-cell meshes.
+We will develop a new generalised Charney--Phillips variant of the non-hydrostatic model by Weller & Shahrokhi 2014 that will enable a like-for-like comparison of Lorenz and generalised Charney--Phillips staggerings.
+<!--TODO: explain tests that we want to do-->
+<!--TODO: close by reiterating benefits-->
 
 
-We propose to develop a generalised Charney--Phillips staggering for arbitrarily-structured meshes which means that
-  * we investigate issues of vertical refinement and vertical staggerings that have not previously been explored
-  * using arbitrarily-structured meshes allows us to support both conforming and nonconforming approaches
-  * it also allows us to model terrain using terrain-following, cut-cell or slanted-cell methods
-
-
+# Misc notes...
 ## who uses unusual meshes?
 
 * conforming AMR in the vertical would create off-vertical faces
