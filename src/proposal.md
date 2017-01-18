@@ -8,17 +8,13 @@ On a finite volume mesh, variables are ordinarily placed at cell centres or cell
 
 ## Mesh refinement
 
-Mesh refinement has received recent attention in atmospheric modelling literature because it could enable atmospheric models to do more with less (more accurate forecasts with less computation)
+Mesh refinement has received growing attention in atmospheric modelling literature because it could enable atmospheric models to produce more accurate forecasts with less computation.
+While much of this literature concentrates on horizontal refinement, some investigations have been made into vertical refinement on two-dimensional `x`–`z` planes: [Müller et al. 2013](https://doi.org/10.1016/j.jcp.2012.10.038) have used conforming refinement of triangular meshes for simulating the standard rising bubble and density current test cases, and [Yamazaki & Satomura 2012](https://doi.org/10.1002/asl.358) have used block-refinement to better resolve idealised mountains.
 
-* most literature concentrates on refining the horizontal mesh (some exceptions: yamazaki-satomura2012, ... more?)
-  * but refined meshes can resolve steeper slopes that could violate aspect ratio constraints.  Hence, meshes might need refining in both horizontal and vertical dimensions.
-  * TODO: is there any literature that deals with the treatment of orography with horizontal mesh refinement?
-* much of the mesh refinement literature uses advection-only models or shallow-water models (some exceptions: yamazaki-satomura2012 non-hydrostatic Sayaca-2D model, bacon2000 hydrostatic OMEGA model, ... more?)
-  * these simpler models have no vertical dimension and so the choice of vertical staggering does not arise
-* most literature concentrates on nonconforming refinement
-  * TODO: find literature on conforming refinement and pros/cons of both approaches
+TODO: talk about tf coords and how they naturally allow high res near the ground.  then talk about alternatives (cut-cells, slanted-cells) and how mesh refinement could be a route for achieving high res near the ground for such meshes.
 
-Our proposal is to develop a generalised Charney--Phillips staggering for arbitrarily-structured meshes, which means that
+
+We propose to develop a generalised Charney--Phillips staggering for arbitrarily-structured meshes which means that
   * we investigate issues of vertical refinement and vertical staggerings that have not previously been explored
   * using arbitrarily-structured meshes allows us to support both conforming and nonconforming approaches
   * it also allows us to model terrain using terrain-following, cut-cell or slanted-cell methods
@@ -38,9 +34,21 @@ Our proposal is to develop a generalised Charney--Phillips staggering for arbitr
 * OMEGA, adaptive non-hydrostatic LAM, unstructured triangular prisms, bacon2000, boybeyi2001, haven't checked if they do refinement/coarsening in the vertical but I think no
 * stcyr-2008
 
+* some literature that uses conforming refinement:
+  - walko-avissar2011 10.1175/MWR-D-11-00021.1 triangles
+  - skamarock2012 10.1175/MWR-D-11-00215.1 hexagons
+  - zarzycki2015 10.1175/JCLI-D-14-00599.1 quads (cubed-sphere)
+  - muller2013 10.1016/j.jcp.2012.10.038 triangles (but arranged in quads)
+* pros/cons of conforming/nonconforming:
+  - jablonowski2009 says nonconforming block-refinement can be more computationally efficient
+  * TODO: more ...
+* TODO: is there any literature that deals with the treatment of orography with horizontal mesh refinement?
+
 * does anyone do AMR in the vertical?
   * yamazaki-satomura2012 do
   * hubbard-nikiforakis2003 do, but for advection-only tests
+  * muller2013 do
+
 
 ## more general texts
 
