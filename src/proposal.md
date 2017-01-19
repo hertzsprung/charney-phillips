@@ -25,7 +25,7 @@ Second, we will perform the mountain waves test case by [Schär et al. 2002](htt
 
 Two additional tasks might be performed if time permits.  First, results of the mountain waves test might be improved by designed a more accurate advection scheme for potential temperature for the generalised Charney--Phillips variant of the model.  Second, we might want to include a semi-implicit treatment of gravity-waves to enable longer time-steps.  This formulation already exists in the Lorenz variant, but a new formulation would be required for the generalised Charney--Phillips variant.
 
-We imagine that future atmospheric models could combine the benefits of cut-cell meshes or slanted-cell meshes, and use some form of mesh refinement to better resolve the boundary-layer at high altitudes.  By formulating a generalised Charney--Phillips staggering for arbitrarily-structured meshes we hope that these future models can benefit from improved meshes while avoiding errors associated with the Lorenz computational mode.
+We imagine that future atmospheric models could benefit from the improved accuracy that cut-cell meshes or slanted-cell meshes can offer, and use some form of mesh refinement to better resolve the boundary-layer at high altitudes.  By formulating a generalised Charney--Phillips staggering for arbitrarily-structured meshes we hope that these future models can benefit from improved meshes while avoiding errors associated with the Lorenz computational mode.
 
 ## Estimation of work
 
@@ -40,5 +40,6 @@ This is my attempt to estimate the items of work that I expect to be completed:
 Total estimate: 5.5 months
 
 Additional tasks:
+
 6. 2 months -- Develop a new advection scheme for potential temperature
 7. 1 month -- Design a semi-implicit treatment for gravity waves for the generalised Charney--Phillips model variant
