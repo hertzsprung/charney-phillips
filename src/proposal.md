@@ -18,6 +18,8 @@ While much of this literature concentrates on horizontal refinement, some invest
 
 According to [Thuburn and Woollings 2005](https://doi.org/10.1016/j.jcp.2004.08.018), the vertical discretisation that Yamazaki & Satomura 2012 used supports computational modes and instabilities, although these errors were not excited by the test cases performed by Yamazaki & Satomura 2012.  The Charney--Phillips staggering is unsusceptible to such errors, but we are not aware of any existing literature that combines mesh refinement with a Charney--Phillips staggering.
 
+## A generalised Charney--Phillips staggering
+
 We propose to formulate a generalised Charney--Phillips staggering for arbitrarily-structured meshes.  By allowing for any mesh structure we can support almost any type of mesh including conforming and non-conforming mesh refinement, terrain-following meshes, cut-cell meshes and slanted-cell meshes.
 We will implement a new, generalised Charney--Phillips variant of the non-hydrostatic model by Weller & Shahrokhi 2014 that will enable a like-for-like comparison of Lorenz and generalised Charney--Phillips staggerings.
 Two series of tests will be performed that verify the generalised Charney--Phillips formulation and implementation.  First, we will reimplement one or more test cases from Arakawa & Konor 1996 that are expected to excite the computational mode in the Lorenz variant of this model, and we expect no such errors when the generalised Charney--Phillips variant is used.
