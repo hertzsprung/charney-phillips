@@ -33,15 +33,11 @@ We imagine that future atmospheric models could benefit from the improved accura
 
 This is my attempt to estimate the items of work that I expect to be completed:
 
-1. 1 month -- Reimplement the linearised model and standing waves test cases from Arakawa & Konor 1996
-2. 1 month -- Possibly publish this replication study in [ReScience](http://rescience.github.io/about/), a new open access journal that accepts articles which reproduce existing computational studies in any scientific discipline
-3. 0.5 months -- Recreate one or more Arakawa & Konor 1996 test cases in OpenFOAM
-4. 2 months -- Formulate the generalised Charney--Phillips staggering and implement it in OpenFOAM
-5. 1 month -- Create the Schär et al. 2002 mountain waves test with conforming and nonconforming mesh refinement, and obtain ‘acceptable’ results with the new generalised Charney--Phillips model variant
-
-Total estimate: 5.5 months
+1. 1 month -- Recreate one or more Arakawa & Konor 1996 test cases in OpenFOAM
+2. 2 months -- Formulate the generalised Charney--Phillips staggering and implement it in OpenFOAM
+3. 1 month -- Create the Schär et al. 2002 mountain waves test with conforming and nonconforming mesh refinement, and obtain ‘acceptable’ results with the new generalised Charney--Phillips model variant
 
 Additional tasks:
 
-6. 2 months -- Develop a new advection scheme for potential temperature
-7. 1 month -- Design a semi-implicit treatment for gravity waves for the generalised Charney--Phillips model variant
+4. 2 months -- Develop a new advection scheme for potential temperature
+5. 1 month -- Design a semi-implicit treatment for gravity waves for the generalised Charney--Phillips model variant
