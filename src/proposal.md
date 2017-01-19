@@ -18,47 +18,27 @@ While much of this literature concentrates on horizontal refinement, some invest
 
 According to [Thuburn and Woollings 2005](https://doi.org/10.1016/j.jcp.2004.08.018), the vertical discretisation that Yamazaki & Satomura 2012 used supports computational modes and instabilities, although these errors were not excited by the test cases performed by Yamazaki & Satomura 2012.  The Charney--Phillips staggering is unsusceptible to such errors, but we are not aware of any existing literature that combines mesh refinement with a Charney--Phillips staggering.
 
-We propose to develop a generalised Charney--Phillips staggering for arbitrarily-structured meshes.  By allowing for any mesh structure we can support almost any type of mesh including conforming and non-conforming mesh refinement, terrain-following meshes, cut-cell meshes and slanted-cell meshes.
-We will develop a new generalised Charney--Phillips variant of the non-hydrostatic model by Weller & Shahrokhi 2014 that will enable a like-for-like comparison of Lorenz and generalised Charney--Phillips staggerings.
-<!--TODO: explain tests that we want to do-->
-<!--TODO: close by reiterating benefits-->
+We propose to formulate a generalised Charney--Phillips staggering for arbitrarily-structured meshes.  By allowing for any mesh structure we can support almost any type of mesh including conforming and non-conforming mesh refinement, terrain-following meshes, cut-cell meshes and slanted-cell meshes.
+We will implement a new, generalised Charney--Phillips variant of the non-hydrostatic model by Weller & Shahrokhi 2014 that will enable a like-for-like comparison of Lorenz and generalised Charney--Phillips staggerings.
+Two series of tests will be performed that verify the generalised Charney--Phillips formulation and implementation.  First, we will reimplement one or more test cases from Arakawa & Konor 1996 that are expected to excite the computational mode in the Lorenz variant of this model, and we expect no such errors when the generalised Charney--Phillips variant is used.
+Second, we will perform the mountain waves test case by [Schär et al. 2002](https://doi.org/10.1175/1520-0493%282002%29130<2459:ANTFVC>2.0.CO;2) using meshes with conforming and nonconforming refinement.  Results will be compared using the Lorenz and generalised Charney--Phillips model variants.
 
+Two additional tasks might be performed if time permits.  First, results of the mountain waves test might be improved by designed a more accurate advection scheme for potential temperature for the generalised Charney--Phillips variant of the model.  Second, we might want to include a semi-implicit treatment of gravity-waves to enable longer time-steps.  This formulation already exists in the Lorenz variant, but a new formulation would be required for the generalised Charney--Phillips variant.
 
-# Misc notes...
-## who uses unusual meshes?
+We imagine that future atmospheric models could combine the benefits of cut-cell meshes or slanted-cell meshes, and use some form of mesh refinement to better resolve the boundary-layer at high altitudes.  By formulating a generalised Charney--Phillips staggering for arbitrarily-structured meshes we hope that these future models can benefit from improved meshes while avoiding errors associated with the Lorenz computational mode.
 
-* conforming AMR in the vertical would create off-vertical faces
-* non-conforming AMR would create degenerate pentagons that look like rectangles
+## Estimation of work
 
-* unstructured (triangular) meshes ([Smolarkiewicz and Szmelter 2011](https://doi.org/10.2478/s11600-011-0043-z))
-* locally-refined block-structured meshes ([Yamazaki and Satomura 2012](https://doi.org/10.1002/asl.358), [Hubbard and Nikiforakis 2003](https://doi.org/10.1175//2568.1)?)
-* other AMR, all advection/shallow-water: behrens1996,1998 and giraldo2000 on triangular grids, see hubbard-nikiforakis2003
-* more AMR: jablonowski2009 does 3D hydrostatic dynamics with floating Lagrangian layers
-* grid nesting?
-* skamarock1989, skamarock-klemp1993
-* OMEGA, adaptive non-hydrostatic LAM, unstructured triangular prisms, bacon2000, boybeyi2001, haven't checked if they do refinement/coarsening in the vertical but I think no
-* stcyr-2008
+This is my attempt to estimate the items of work that I expect to be completed:
 
-* some literature that uses conforming refinement:
-  - walko-avissar2011 10.1175/MWR-D-11-00021.1 triangles
-  - skamarock2012 10.1175/MWR-D-11-00215.1 hexagons
-  - zarzycki2015 10.1175/JCLI-D-14-00599.1 quads (cubed-sphere)
-  - muller2013 10.1016/j.jcp.2012.10.038 triangles (but arranged in quads)
-* pros/cons of conforming/nonconforming:
-  - jablonowski2009 says nonconforming block-refinement can be more computationally efficient
-  * TODO: more ...
-* TODO: is there any literature that deals with the treatment of orography with horizontal mesh refinement?
+1. 1 month -- Reimplement the linearised model and standing waves test cases from Arakawa & Konor 1996
+2. 1 month -- Possibly publish this replication study in [ReScience](http://rescience.github.io/about/), a new open access journal that accepts articles which reproduce existing computational studies in any scientific discipline
+3. 0.5 months -- Recreate one or more Arakawa & Konor 1996 test cases in OpenFOAM
+4. 2 months -- Formulate the generalised Charney--Phillips staggering and implement it in OpenFOAM
+5. 1 month -- Create the Schär et al. 2002 mountain waves test with conforming and nonconforming mesh refinement, and obtain ‘acceptable’ results with the new generalised Charney--Phillips model variant
 
-* does anyone do AMR in the vertical?
-  * yamazaki-satomura2012 do
-  * hubbard-nikiforakis2003 do, but for advection-only tests
-  * muller2013 do
+Total estimate: 5.5 months
 
-
-## more general texts
-
-* [Block-structured Adaptive Mesh Refinement -- Theory, Implementation and Application](https://doi.org/10.1051/proc/201134002)
-
-<!---
-Almost all atmospheric models treat horizontal and vertical dimensions separately, leading to separate choices of horizontal and vertical staggerings.  In the horizontal, the Arakawa C-grid is commonly used because inertio-gravity waves have accurate dispersion properties [Arakawa and Lamb 1977](https://books.google.co.uk/books?id=nN_4561KTIIC&lpg=PA173&ots=yKV39fe7eu&dq=Computational%20design%20of%20the%20basic%20dynamical%20processes%20of%20the%20UCLA%20general%20circulation%20model&lr&pg=PA173#v=onepage&q&f=false).
--->
+Additional tasks:
+6. 2 months -- Develop a new advection scheme for potential temperature
+7. 1 month -- Design a semi-implicit treatment for gravity waves for the generalised Charney--Phillips model variant
