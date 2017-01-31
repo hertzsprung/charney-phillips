@@ -1,3 +1,15 @@
+## Questions
+
+* Who has made direct comparisons between Lorenz and Charney--Phillips?
+* What models have used C--P?
+* What evidence is there for the Lorenz computational mode?
+* What evidence is there that C--P is superior to Lorenz?
+* Has anyone discussed advection schemes for C--P?
+
+## Chronological list
+
+The :white_check_mark: symbol shows those articles where I've finished taking notes.
+
 * [Robert et al. 1972](https://doi.org/10.1175/1520-0493(1972)100<0329:AITISF>2.3.CO;2)
   * Use C--P staggering (but don't give it a name)
 
@@ -6,6 +18,8 @@
 * [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277)
 
 * [Arakawa and Moorthi 1988](https://doi.org/10.1175/1520-0469(1988)045<1688:BIIVDS>2.0.CO;2)
+
+* [Cullen 1989](https://doi.org/10.1016/0021-9991(89)90211-8)
 
 * [Tanguay et al. 1990](https://doi.org/10.1175/1520-0493(1990)118<1970:ASISLF>2.0.CO;2)
 
@@ -48,9 +62,11 @@
 
 * [Konor and Arakawa 1997](https://doi.org/10.1175/1520-0493(1997)125<1649:DOAAMB>2.0.CO;2)
 
-* [Skamarock et al. 1997](https://doi.org/10.1175/1520-0493(1997)125<0587:PCRSFH>2.0.CO;2)
+* [Skamarock et al. 1997](https://doi.org/10.1175/1520-0493(1997)125<0587:PCRSFH>2.0.CO;2) :white_check_mark:
+  * A Helmholtz solver that is suitable for nonhydrostatic flows over steep slopes
+  * Lorenz staggering complicates the Helmholtz solver, the problem is not present with C--P staggering (see very end of section 2)
 
-* [Bell 2003](https://doi.org/10.1175/1520-0493(2003)131<1498:COPVOL>2.0.CO;2)
+* [Bell 2003](https://doi.org/10.1175/1520-0493(2003)131<1498:COPVOL>2.0.CO;2) :white_check_mark:
   * distinguishes between original Lorenz and modified Lorenz staggerings
   * original Lorenz used by Lorenz 1960, Arakawa and Lamb 1997
   * modified Lorenz was used by Tokioka 1978, Simmons and Burridge 1981, Arakawa and Suarez 1983
@@ -61,6 +77,9 @@
 
 * [Zhu and Smith 2003](https://doi.org/10.1256/qj.02.78)
   * minimal hurricane model
+
+* [Zadra et al. 2004](https://doi.org/10.1256/qj.03.208)
+  * "Vertical diffusion is essential to prevent the growth of spurious modes near the surface"
 
 * [Bourchtein et al. 2004](https://doi.org/10.1016/S0377-0427(03)00640-X)
   * hydrostatic models
@@ -75,11 +94,18 @@
 
 * [Davies et al. 2005](https://doi.org/10.1256/qj.04.101)
   * UKMO EndGame model uses C--P staggering
+  * Main drawback of C--P: temperature at pressure points is approximated by vertical averaging, but this is not appropriate in the lowest layer where there are large temperature gradients
+  * EndGame works around this by assuming θ at the pressure point is the same as θ at the half-level immediately above (if I understand correctly)
+
+* [Thuburn 2006](https://doi.org/10.1256/qj.06.10)
+
+* [Toy and Randall 2007](https://doi.org/10.1016/j.jcp.2006.08.022)
 
 * [XueSheng et al. 2007](https://doi.org/10.1007/s11430-007-0124-7)
   * Chinese GRAPES model uses C--P staggering
 
-* [Melvin et al. 2010](https://doi.org/10.1002/qj.603)
+* [Melvin et al. 2010](https://doi.org/10.1002/qj.603) :white_check_mark:
+  * UKMO vertical slice model uses C--P staggering
 
 * [Qaddouri and Lee 2011](https://doi.org/10.1002/qj.873)
   * Canadian GEM model uses C--P staggering
@@ -90,10 +116,14 @@
 * Holdaway et al. 2013 ([Part I](https://doi.org/10.1002/qj.2016), [Part II](https://doi.org/10.1002/qj.2017))
 
 * [Girard et al. 2014](https://doi.org/10.1175/MWR-D-13-00255.1)
-  * Canadian GEM model uses C--P staggering
+  * Canadian GEM4 model uses C--P staggering
+  * GEM3 model used collation in the vertical that caused spurious 2Δz waves (Zadra et al. 2004)
   * Lots of discussion on staggering configurations and lots of citations
 
 * [Wood et al. 2014](https://doi.org/10.1002/qj.2235)
 
-* [Guerra and Ullrich 2016](https://doi.org/10.5194/gmd-9-2007-2016)
-
+* [Guerra and Ullrich 2016](https://doi.org/10.5194/gmd-9-2007-2016) :white_check_mark:
+  * local, flow-dependent hyperviscosity is applied in the vertical, akin to advective upwinding
+  * Schär wave test shows spurious oscillations in vertical velocity on vertically-collocated mesh that is not present on Lorenz or C--P staggerings
+  * Straka density current test reveals **problem with advection of θ** that leads to a discontinuity at the lower boundary (p. 2019)
+  * Not clear whether rising bubble tests are performed on collocated/Lorenz/C--P mesh
