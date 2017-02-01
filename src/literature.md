@@ -4,7 +4,7 @@
   * Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Semazzi et al. 1995, MC2 (Girard et al. 2005), Melvin et al. 2010, Wood et al. 2014
+  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), Melvin et al. 2010, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -54,7 +54,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Hollingsworth 1995](http://www.ecmwf.int/en/elibrary/9943-spurious-mode-lorenz-arrangement-y-and-t-which-does-not-exist-charney-phillips)
 
-* [Semazzi et al. 1995](https://doi.org/10.1175/1520-0493(1995)123<2534:AGNSLA>2.0.CO;2)
+* [Qian et al. 1998](https://doi.org/10.1175/1520-0493(1998)126<0747:AGNSLA>2.0.CO;2)
   * Semi-implicit semi-Lagrangian global model using C--P staggering
   * Did this model get developed further?
 
