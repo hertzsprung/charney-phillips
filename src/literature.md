@@ -122,8 +122,14 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Bourchtein and Bourchtein 2012](https://doi.org/10.1016/j.cam.2011.05.037)
   * mathematical analysis of vertical modes for hydrostatic models in generalised vertical coordinates
 
-* Holdaway et al. 2013 ([Part I](https://doi.org/10.1002/qj.2016), [Part II](https://doi.org/10.1002/qj.2017))
+* Holdaway et al. 2013 ([Part I](https://doi.org/10.1002/qj.2016) :white_check_mark:, [Part II](https://doi.org/10.1002/qj.2017))
+  * investigates physics-dynamics coupling
   * Must choose a combination of: vertical coordinate, prognostic variables (three velocity and two thermodynamic), and staggering
+  * One optimal configuration for dynamical core is height/theta+pressure/C--P
+  * C--P good for PV and wave propagation, Lorenz good for conservation
+  * Richardson number can be calculated straightforwardly on Lorenz grid but C--P requires averaging
+  * Lorenz provides cleaner route for energy conservation than C--P
+  * Model comparison is OK but less general than steady/time-variant decomposition
 
 * [Girard et al. 2014](https://doi.org/10.1175/MWR-D-13-00255.1)
   * Canadian GEM4 model uses C--P staggering
