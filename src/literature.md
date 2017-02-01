@@ -9,6 +9,8 @@
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
   * Guerra and Ullrich 2016
+  * Yamazaki et al. 2016
+  * Cotter and Kuzmin 2016
 
 ## Chronological list
 
@@ -109,7 +111,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Girard et al. 2005](https://doi.org/10.1175/MWR2931.1) :white_check_mark:
   * Canadian MC2 model uses a form of C--P with a generalised buoyancy variable collated with w at half-levels
 
-* [Davies et al. 2005](https://doi.org/10.1256/qj.04.101)
+* [Davies et al. 2005](https://doi.org/10.1256/qj.04.101) :white_check_mark:
   * UKMO EndGame model uses C--P staggering
   * Main drawback of C--P: temperature at pressure points is approximated by vertical averaging, but this is not appropriate in the lowest layer where there are large temperature gradients
   * EndGame works around this by assuming θ at the pressure point is the same as θ at the half-level immediately above (if I understand correctly)
@@ -150,3 +152,11 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * Schär wave test shows spurious oscillations in vertical velocity on vertically-collocated mesh that is not present on Lorenz or C--P staggerings
   * Straka density current test reveals **problem with advection of θ** that leads to a discontinuity at the lower boundary (p. 2019)
   * Not clear whether rising bubble tests are performed on collocated/Lorenz/C--P mesh
+  
+* [Cotter and Kuzmin 2016](https://doi.org/10.1016/j.jcp.2016.02.021) :white_check_mark:
+  * Upwind DG advection scheme for temperature
+  * A new limiter for advection schemes in C--P space
+  
+* [Yamazaki et al. 2016](https://arxiv.org/abs/1611.04929) :white_check_mark:
+  * A new advection scheme for temperature
+  * Upwind DG method in the horizontal blended with Streamline Upwind Petrov Galerkin (SUPG) method in the vertical direction
