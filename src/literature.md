@@ -54,7 +54,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Hollingsworth 1995](http://www.ecmwf.int/en/elibrary/9943-spurious-mode-lorenz-arrangement-y-and-t-which-does-not-exist-charney-phillips)
 
-* [Qian et al. 1998](https://doi.org/10.1175/1520-0493(1998)126<0747:AGNSLA>2.0.CO;2)
+* [Qian et al. 1998](https://doi.org/10.1175/1520-0493(1998)126<0747:AGNSLA>2.0.CO;2) :white_check_mark:
   * Semi-implicit semi-Lagrangian global model using C--P staggering
   * Did this model get developed further?
 
