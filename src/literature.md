@@ -120,7 +120,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * GEM3 model used collation in the vertical that caused spurious 2Δz waves (Zadra et al. 2004)
   * Lots of discussion on staggering configurations and lots of citations
 
-* [Wood et al. 2014](https://doi.org/10.1002/qj.2235)
+* [Wood et al. 2014](https://doi.org/10.1002/qj.2235) :white_check_mark:
+  * SISL nonhydrostatic deep atmosphere model using C--P staggering
 
 * [Guerra and Ullrich 2016](https://doi.org/10.5194/gmd-9-2007-2016) :white_check_mark:
   * local, flow-dependent hyperviscosity is applied in the vertical, akin to advective upwinding
