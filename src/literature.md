@@ -3,7 +3,7 @@
 * Who has made direct comparisons between Lorenz and Charney--Phillips?
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Melvin et al. 2010, Wood et al. 2014
+  * Research: Robert et al. 1972, MC2 (Girard et al. 2005), Melvin et al. 2010, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -82,8 +82,12 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Thuburn et al. 2002](https://doi.org/10.1256/003590002320603403)
   * section 5 discusses C--P
 
-* [Zhu and Smith 2003](https://doi.org/10.1256/qj.02.78)
-  * minimal hurricane model
+* [Zhu and Smith 2003](https://doi.org/10.1256/qj.02.78) :white_check_mark:
+  * compare Lorenz and C--P variants of a three-layer hurricane model
+  * computational mode in temperature triggered by latent heat release with Lorenz staggering
+  * Anthes et al. 1979 and Anthes 1972 use "A-grid" (this is not the Arakawa A-grid!) but it still suffers from a computational mode
+  * Tokioka 1978 advocated the A-grid but Arakawa and Moorthi 1988 showed why Tokioka was mistaken
+  * computational mode is present in any staggering with horizontal velocity and theta collocated, not just Lorenz staggering
 
 * [Zadra et al. 2004](https://doi.org/10.1256/qj.03.208)
   * "Vertical diffusion is essential to prevent the growth of spurious modes near the surface"
@@ -99,7 +103,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Thuburn and Woolings 2005](https://doi.org/10.1016/j.jcp.2004.08.018)
   * Exhaustive testing of vertical configurations (vertical coordinate, prognostic variables, and staggering)
 
-* [Girard et al. 2005](https://doi.org/10.1175/MWR2931.1)
+* [Girard et al. 2005](https://doi.org/10.1175/MWR2931.1) :white_check_mark:
+  * Canadian MC2 model uses a form of C--P with a generalised buoyancy variable collated with w at half-levels
 
 * [Davies et al. 2005](https://doi.org/10.1256/qj.04.101)
   * UKMO EndGame model uses C--P staggering
@@ -110,14 +115,11 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Toy and Randall 2007](https://doi.org/10.1016/j.jcp.2006.08.022)
 
-* [XueSheng et al. 2007](https://doi.org/10.1007/s11430-007-0124-7)
+* [XueSheng et al. 2007](https://doi.org/10.1007/s11430-007-0124-7) :white_check_mark:
   * Chinese GRAPES model uses C--P staggering
 
 * [Melvin et al. 2010](https://doi.org/10.1002/qj.603) :white_check_mark:
   * UKMO vertical slice model uses C--P staggering
-
-* [Qaddouri and Lee 2011](https://doi.org/10.1002/qj.873)
-  * Canadian GEM model uses C--P staggering
 
 * [Bourchtein and Bourchtein 2012](https://doi.org/10.1016/j.cam.2011.05.037)
   * mathematical analysis of vertical modes for hydrostatic models in generalised vertical coordinates
@@ -130,6 +132,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * Richardson number can be calculated straightforwardly on Lorenz grid but C--P requires averaging
   * Lorenz provides cleaner route for energy conservation than C--P
   * Model comparison is OK but less general than steady/time-variant decomposition
+  * Does the BL scheme suppress the Lorenz computational mode?
 
 * [Girard et al. 2014](https://doi.org/10.1175/MWR-D-13-00255.1)
   * Canadian GEM4 model uses C--P staggering
