@@ -2,9 +2,12 @@
 
 * Who has made direct comparisons between Lorenz and Charney--Phillips?
 * What models have used C--P?
+  * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
+  * Research: Robert et al. 1972, Melvin et al. 2010, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
+  * Guerra and Ullrich 2016
 
 ## Chronological list
 
@@ -16,6 +19,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Tokioka 1978](https://www.jstage.jst.go.jp/article/jmsj1965/56/2/56_2_98/_article)
 
 * [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277)
+
+* [Schnieder 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2)
 
 * [Arakawa and Moorthi 1988](https://doi.org/10.1175/1520-0469(1988)045<1688:BIIVDS>2.0.CO;2)
 
@@ -62,6 +67,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Konor and Arakawa 1997](https://doi.org/10.1175/1520-0493(1997)125<1649:DOAAMB>2.0.CO;2)
 
+* [Cullen et al. 1997](https://doi.org/10.1080/07055900.1997.9687359)
+
 * [Skamarock et al. 1997](https://doi.org/10.1175/1520-0493(1997)125<0587:PCRSFH>2.0.CO;2) :white_check_mark:
   * A Helmholtz solver that is suitable for nonhydrostatic flows over steep slopes
   * Lorenz staggering complicates the Helmholtz solver, the problem is not present with C--P staggering (see very end of section 2)
@@ -87,8 +94,10 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Untch and Hortal 2004](https://doi.org/10.1256/qj.03.173)
   * vertical finite-elements for ECMWF compared with Lorenz and C--P finite difference
   * FEM suffers less from Lorenz computational mode
+  * Holdaway et al. 2013 Part I say that ECMWF (presumably the FEM) is a modification of the Lorenz staggering
 
 * [Thuburn and Woolings 2005](https://doi.org/10.1016/j.jcp.2004.08.018)
+  * Exhaustive testing of vertical configurations (vertical coordinate, prognostic variables, and staggering)
 
 * [Girard et al. 2005](https://doi.org/10.1175/MWR2931.1)
 
@@ -114,6 +123,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * mathematical analysis of vertical modes for hydrostatic models in generalised vertical coordinates
 
 * Holdaway et al. 2013 ([Part I](https://doi.org/10.1002/qj.2016), [Part II](https://doi.org/10.1002/qj.2017))
+  * Must choose a combination of: vertical coordinate, prognostic variables (three velocity and two thermodynamic), and staggering
 
 * [Girard et al. 2014](https://doi.org/10.1175/MWR-D-13-00255.1)
   * Canadian GEM4 model uses C--P staggering
