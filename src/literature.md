@@ -4,7 +4,7 @@
   * Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), Melvin et al. 2010, Wood et al. 2014
+  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -122,6 +122,9 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [XueSheng et al. 2007](https://doi.org/10.1007/s11430-007-0124-7) :white_check_mark:
   * Chinese GRAPES model uses C--P staggering
+  
+* [Krishnamurti et al. 2007](https://doi.org/10.1111/j.1600-0870.2007.00278.x) :white_check_mark:
+  * Florida State University Global Spectral Model (FSU GSM) uses C--P staggering
 
 * [Melvin et al. 2010](https://doi.org/10.1002/qj.603) :white_check_mark:
   * UKMO vertical slice model uses C--P staggering
