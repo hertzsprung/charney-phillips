@@ -4,7 +4,7 @@
   * Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
+  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -16,8 +16,11 @@
 
 The :white_check_mark: symbol shows those articles where I've finished taking notes.
 
-* [Robert et al. 1972](https://doi.org/10.1175/1520-0493(1972)100<0329:AITISF>2.3.CO;2)
-  * Use C--P staggering (but don't give it a name)
+* [Krishnamurti 1969](https://doi.org/10.1002/qj.49709540511) :white_check_mark:
+  * Primitive equation model, later to become the FSM GMS, uses C--P staggering (but don't name it as such)
+
+* [Robert et al. 1972](https://doi.org/10.1175/1520-0493(1972)100<0329:AITISF>2.3.CO;2) :white_check_mark:
+  * Primitive equation model uses C--P staggering (but don't name it as such)
 
 * [Tokioka 1978](https://www.jstage.jst.go.jp/article/jmsj1965/56/2/56_2_98/_article)
 
