@@ -1,7 +1,7 @@
 ## Questions
 
 * Who has made like-for-like comparisons between Lorenz and Charney--Phillips?
-  * Tokioka 1978, Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
+  * Tokioka 1978, Chang 1992, Sabutis 1994, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
   * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Durran and Blossey 2012, Wood et al. 2014
@@ -35,6 +35,11 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * consider 8 staggerings of u,w,rho,p that include Lorenz (their scheme A) and C--P (their scheme B)
   * C--P doesn't have computational mode but still has poor dispersion properties at high wavenumbers (don't properly understand this yet)
   * choose another staggering (their scheme C') with w and p collated at half-levels, u and rho collated at full-levels, already used by [Shuman and Hovermale 1968](https://doi.org/10.1175/1520-0450(1968)007<0525:AOSLPE>2.0.CO;2), [Kasahara and Washington 1967](https://doi.org/10.1175/1520-0493(1967)095<0389:NGGCMO>2.3.CO;2)
+  
+* H Sundquist 1979, Vertical coordinates and related discretization, GARP Report 17 Volume II, World Meteorological Organization, Geneva, 1--150
+
+* [Arakawa and Suarez 1983](https://doi.org/10.1175/1520-0493(1983)111<0034:VDOTPE>2.0.CO;2)
+  * use Tokioka 1978's C' scheme in a primitive equation model
 
 * [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277) :white_check_mark:
   * staggering chosen to eliminate spurious 2dz waves (Mesinger 1973)
@@ -75,10 +80,10 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * growing modes of any wavenumber are supported by Lorenz staggering
   * wavenumber has upper bound for C--P staggering
 
-* [Sabutis 1994](https://doi.org/10.1175/1520-0493(1994)122<2868:TCOAVG>2.0.CO;2)
-  * compares unstaggered, Lorenz and C--P staggerings
-  * studies vertical waves of varying lengths
+* [Sabutis 1994](https://doi.org/10.1175/1520-0493(1994)122<2868:TCOAVG>2.0.CO;2) :white_check_mark:
+  * compares unstaggered, Lorenz and C--P staggerings in zonally-averaged 2.5D model of the middle atmosphere
   * finds spurious waves propagating vertically with Lorenz staggering
+  * closely follows Tokioka 1978's dispersion analysis but with a different equation set
 
 * [Cullen and James 1994](https://digital.nmla.metoffice.gov.uk/file/sdb%3AdigitalFile|38388ae5-134a-4d00-87cc-72b3a4b7de9b/)
 
