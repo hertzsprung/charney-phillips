@@ -1,7 +1,7 @@
 ## Questions
 
 * Who has made like-for-like comparisons between Lorenz and Charney--Phillips?
-  * Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
+  * Tokioka 1978, Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
   * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
@@ -11,6 +11,11 @@
   * Guerra and Ullrich 2016
   * Yamazaki et al. 2016
   * Cotter and Kuzmin 2016
+  
+## Possible discrepancies
+
+Are these correct assertions:
+* Tokioka 1978 advocate their C' staggering which Zhu and Smith 2003 seem to call an A-grid.  Zhu and Smith 2003 say that Arakawa and Moorthi 1988 show why it is bad.
 
 ## Chronological list
 
@@ -21,6 +26,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Robert et al. 1972](https://doi.org/10.1175/1520-0493(1972)100<0329:AITISF>2.3.CO;2) :white_check_mark:
   * Primitive equation model uses C--P staggering (but don't name it as such)
+  
+* [Mesinger 1973](https://doi.org/10.1111/j.2153-3490.1973.tb00629.x)
 
 * [Tokioka 1978](https://www.jstage.jst.go.jp/article/jmsj1965/56/2/56_2_98/_article) :white_check_mark:
   * good vertical dispersion especially important for stratospheric modelling
@@ -28,7 +35,14 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * C--P doesn't have computational mode but still has poor dispersion properties at high wavenumbers (don't properly understand this yet)
   * choose another staggering (their scheme C') with w and p collated at half-levels, u and rho collated at full-levels, already used by [Shuman and Hovermale 1968](https://doi.org/10.1175/1520-0450(1968)007<0525:AOSLPE>2.0.CO;2), [Kasahara and Washington 1967](https://doi.org/10.1175/1520-0493(1967)095<0389:NGGCMO>2.3.CO;2)
 
-* [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277)
+* [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277) :white_check_mark:
+  * staggering chosen to eliminate spurious 2dz waves (Mesinger 1973)
+  * compares four vertical discretisations for a global spectral model:
+    * FD staggered ([Daley et al. 1976](http://www.tandfonline.com/doi/pdf/10.1080/00046973.1976.9648405)) operational at Canadian Met Centre
+    * Constant FE staggered/unstaggered
+    * Linear FE unstaggered ([Staniforth and Daley, 1977](https://doi.org/10.1175/1520-0493(1977)105<1108:AFEFFT>2.0.CO;2))
+  * Finite difference poorest overall but not by much
+  * Girard 1983 reviews more FEM vertical discretisations
 
 * [Schnieder 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2)
 
