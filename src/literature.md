@@ -45,7 +45,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * Finite difference poorest overall but not by much
   * Girard 1983 reviews more FEM vertical discretisations
 
-* [Schnieder 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2) :white_check_mark:
+* [Schneider 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2) :white_check_mark:
   * Lorenz staggering that is inconsistent with the continuous equations (shown by trying to invert a square matrix that is singular -- system is overdetermined)
   * computational mode excited by thermal forcing
   * suggest a C--P staggering as a remedy (but don't name it as such)
