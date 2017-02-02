@@ -75,7 +75,10 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * Arakawa and Konor 1994, Comparison of atmospheric models based on the Lorenz and Charney-Phillips grids
 
-* [Fox-Rabinovitz 1994](https://doi.org/10.1175/1520-0493(1994)122<0377:CDPOVS>2.0.CO;2)
+* [Fox-Rabinovitz 1994](https://doi.org/10.1175/1520-0493(1994)122<0377:CDPOVS>2.0.CO;2) :white_check_mark:
+  * compares dispersion properties for lots of staggerings with primitive equation model
+  * best staggerings are Lorenz and Charney--Phillips
+  * advocates time-staggering because it provides 2x effective resolution
 
 * [Clark and Haynes 1994](https://doi.org/10.1175/1520-0469(1994)051<2101:EIIEOV>2.0.CO;2)
   * equatorial inertial instability
@@ -95,7 +98,9 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * Semi-implicit semi-Lagrangian global model using C--P staggering
   * Did this model get developed further?
 
-* [Fox-Rabinovitz 1996](https://doi.org/10.1175/1520-0493(1996)124<0498:CDPOSG>2.0.CO;2)
+* [Fox-Rabinovitz 1996](https://doi.org/10.1175/1520-0493(1996)124<0498:CDPOSG>2.0.CO;2) :white_check_mark:
+  * dispersion analysis with 3D anelastic model finds C--P to be superior to Lorenz
+  * very similar analysis and range of staggerings from Fox-Rabinovitz 1994
 
 * [Arakawa and Konor 1996](https://doi.org/10.1175/1520-0493(1996)124<0511:VDOTPE>2.0.CO;2) 
   * C--P originally applied to QG model
