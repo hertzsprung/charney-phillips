@@ -22,7 +22,11 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Robert et al. 1972](https://doi.org/10.1175/1520-0493(1972)100<0329:AITISF>2.3.CO;2) :white_check_mark:
   * Primitive equation model uses C--P staggering (but don't name it as such)
 
-* [Tokioka 1978](https://www.jstage.jst.go.jp/article/jmsj1965/56/2/56_2_98/_article)
+* [Tokioka 1978](https://www.jstage.jst.go.jp/article/jmsj1965/56/2/56_2_98/_article) :white_check_mark:
+  * good vertical dispersion especially important for stratospheric modelling
+  * consider 8 staggerings of u,w,rho,p that include Lorenz (their scheme A) and C--P (their scheme B)
+  * C--P doesn't have computational mode but still has poor dispersion properties at high wavenumbers (don't properly understand this yet)
+  * choose another staggering (their scheme C') with w and p collated at half-levels, u and rho collated at full-levels, already used by [Shuman and Hovermale 1968](https://doi.org/10.1175/1520-0450(1968)007<0525:AOSLPE>2.0.CO;2), [Kasahara and Washington 1967](https://doi.org/10.1175/1520-0493(1967)095<0389:NGGCMO>2.3.CO;2)
 
 * [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277)
 
