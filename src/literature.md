@@ -1,7 +1,7 @@
 ## Questions
 
 * Who has made like-for-like comparisons between Lorenz and Charney--Phillips?
-  * Tokioka 1978, Chang 1992, Sabutis 1994, Arakawa and Konor 1996, Zhu and Smith 2003
+  * Tokioka 1978, Chang 1992, Sabutis 1994, Fox-Rabinovitz 1994, 1996, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
   * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Durran and Blossey 2012, Wood et al. 2014
