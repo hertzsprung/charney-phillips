@@ -16,6 +16,7 @@
 
 Are these correct assertions:
 * Tokioka 1978 advocate their C' staggering which Zhu and Smith 2003 seem to call an A-grid.  Zhu and Smith 2003 say that Arakawa and Moorthi 1988 show why it is bad.
+* Yakimiw and Girard 1987 says that Staniforth and Daley 1977 are unstaggered but it seems that they might actually be staggered?  In any case Schneider 1987 says they avoid the Lorenz computational mode.
 
 ## Chronological list
 
@@ -40,11 +41,14 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * compares four vertical discretisations for a global spectral model:
     * FD staggered ([Daley et al. 1976](http://www.tandfonline.com/doi/pdf/10.1080/00046973.1976.9648405)) operational at Canadian Met Centre
     * Constant FE staggered/unstaggered
-    * Linear FE unstaggered ([Staniforth and Daley, 1977](https://doi.org/10.1175/1520-0493(1977)105<1108:AFEFFT>2.0.CO;2))
+    * Linear FE unstaggered ([Staniforth and Daley 1977](https://doi.org/10.1175/1520-0493(1977)105<1108:AFEFFT>2.0.CO;2))
   * Finite difference poorest overall but not by much
   * Girard 1983 reviews more FEM vertical discretisations
 
-* [Schnieder 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2)
+* [Schnieder 1987](https://doi.org/10.1175/1520-0493(1987)115<2166:AIIVDI>2.0.CO;2) :white_check_mark:
+  * Lorenz staggering that is inconsistent with the continuous equations (shown by trying to invert a square matrix that is singular -- system is overdetermined)
+  * computational mode excited by thermal forcing
+  * suggest a C--P staggering as a remedy (but don't name it as such)
 
 * [Arakawa and Moorthi 1988](https://doi.org/10.1175/1520-0469(1988)045<1688:BIIVDS>2.0.CO;2)
 
