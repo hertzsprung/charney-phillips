@@ -4,7 +4,7 @@
   * Tokioka 1978, Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
+  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Durran and Blossey 2012, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -159,6 +159,9 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Melvin et al. 2010](https://doi.org/10.1002/qj.603) :white_check_mark:
   * UKMO vertical slice model uses C--P staggering
+
+* [Durran and Blossey 2012](https://doi.org/10.1175/MWR-D-11-00088.1) :white_check_mark:
+  * Use C--P staggering to test their IMEX timestepping
 
 * [Bourchtein and Bourchtein 2012](https://doi.org/10.1016/j.cam.2011.05.037) :white_check_mark:
   * mathematical analysis of vertical modes for hydrostatic models in generalised vertical coordinates
