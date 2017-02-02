@@ -38,6 +38,8 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   
 * H Sundquist 1979, Vertical coordinates and related discretization, GARP Report 17 Volume II, World Meteorological Organization, Geneva, 1--150
 
+* [Simmons and Burridge 1981](10.1175/1520-0493(1981)109<0758:AEAAMC>2.0.CO;2)
+
 * [Arakawa and Suarez 1983](https://doi.org/10.1175/1520-0493(1983)111<0034:VDOTPE>2.0.CO;2)
   * use Tokioka 1978's C' scheme in a primitive equation model
 
