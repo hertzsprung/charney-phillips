@@ -1,7 +1,7 @@
 ## Questions
 
 * Who has made like-for-like comparisons between Lorenz and Charney--Phillips?
-  * Arakawa and Konor 1996, Zhu and Smith 2003
+  * Chang 1992, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
   * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti et al. 2007), Melvin et al. 2010, Wood et al. 2014
@@ -33,10 +33,13 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Laprise and Girard 1990](https://doi.org/10.1175/1520-0442(1990)003<0032:ASGCMU>2.0.CO;2)
 
-* [Chang 1992](https://doi.org/10.1175/1520-0469(1992)049<2452:RNMOTE>2.0.CO;2)
-  * spurious short-wave amplification found in Lorenz and C--P primitive equation model
+* [Chang 1992](https://doi.org/10.1175/1520-0469(1992)049<2452:RNMOTE>2.0.CO;2) :white_check_mark:
+  * compares Lorenz and C--P variants of QG model and primitive equation model
+  * spurious waves found in Lorenz QG model
+  * spurious waves found in Lorenz and slower-growing spurious waves in C--P primitive equation model
+  * more diffusion required to eliminate spurious modes in Lorenz variant compared to C--P
   * waves are similar to Arakawa and Moorthi 1988
-  * growth rate smaller in C--P variant
+  * Lorenz model overestimates growth of Stone's nongeostrophy mode ([Stone 1996](https://doi.org/10.1175/1520-0469(1966)023<0390:ONGBS>2.0.CO;2), [1970](https://doi.org/10.1175/1520-0469(1970)027<0721:ONGBSP>2.0.CO;2), [Nakamura 1988](https://doi.org/10.1175/1520-0469(1988)045<3253:SSOBIO>2.0.CO;2)) more than C--P
 
 * Arakawa and Konor 1994, Comparison of atmospheric models based on the Lorenz and Charney-Phillips grids
 
