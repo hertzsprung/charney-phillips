@@ -40,7 +40,7 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Simmons and Burridge 1981](10.1175/1520-0493(1981)109<0758:AEAAMC>2.0.CO;2)
 
-* [Arakawa and Suarez 1983](https://doi.org/10.1175/1520-0493(1983)111<0034:VDOTPE>2.0.CO;2)
+* [Arakawa and Suarez 1983](https://doi.org/10.1175/1520-0493(1983)111<0034:VDOTPE>2.0.CO;2) :white_check_mark:
   * use Tokioka 1978's C' scheme in a primitive equation model
 
 * [Yakimiw and Girard 1987](https://doi.org/10.1080/07055900.1987.9649277) :white_check_mark:
