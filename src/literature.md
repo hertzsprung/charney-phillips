@@ -94,11 +94,14 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
   * Tokioka 1978 advocated the A-grid but Arakawa and Moorthi 1988 showed why Tokioka was mistaken
   * computational mode is present in any staggering with horizontal velocity and theta collocated, not just Lorenz staggering
 
-* [Zadra et al. 2004](https://doi.org/10.1256/qj.03.208)
+* [Zadra et al. 2004](https://doi.org/10.1256/qj.03.208) :white_check_mark:
+  * GEM3 uses collocation in the vertical
   * "Vertical diffusion is essential to prevent the growth of spurious modes near the surface"
+  * vertically propagating 2dz waves due to dynamical core (footnote on p.2549)
 
-* [Bourchtein et al. 2004](https://doi.org/10.1016/S0377-0427(03)00640-X)
-  * hydrostatic models
+* [Bourchtein et al. 2004](https://doi.org/10.1016/S0377-0427(03)00640-X) :white_check_mark:
+  * analysis of well-posedness of linearized, vertically-discrete hydrostatic equations
+  * find that both Lorenz and C--P are well-posed
 
 * [Untch and Hortal 2004](https://doi.org/10.1256/qj.03.173)
   * vertical finite-elements for ECMWF compared with Lorenz and C--P finite difference
@@ -129,9 +132,11 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 * [Melvin et al. 2010](https://doi.org/10.1002/qj.603) :white_check_mark:
   * UKMO vertical slice model uses C--P staggering
 
-* [Bourchtein and Bourchtein 2012](https://doi.org/10.1016/j.cam.2011.05.037)
+* [Bourchtein and Bourchtein 2012](https://doi.org/10.1016/j.cam.2011.05.037) :white_check_mark:
   * mathematical analysis of vertical modes for hydrostatic models in generalised vertical coordinates
-
+  * explains why the Lorenz computational mode does not appear in their analysis (but acknowledges that it does exist nonetheless)
+  * find that a discretisation using Lorenz staggering closely approximates the continuous equations
+  
 * Holdaway et al. 2013 ([Part I](https://doi.org/10.1002/qj.2016) :white_check_mark:, [Part II](https://doi.org/10.1002/qj.2017))
   * investigates physics-dynamics coupling
   * Must choose a combination of: vertical coordinate, prognostic variables (three velocity and two thermodynamic), and staggering
