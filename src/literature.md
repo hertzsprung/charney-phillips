@@ -4,7 +4,7 @@
   * Tokioka 1978, Chang 1992, Sabutis 1994, Fox-Rabinovitz 1994, 1996, Arakawa and Konor 1996, Zhu and Smith 2003
 * What models have used C--P?
   * Operational: UKMO EndGame (Davies et al. 2005), Canadian GEM4 (Girard et al. 2014), Chinese Global/Regional Assimilation and PrEdiction System (GRAPES) (XueSheng et al. 2007)
-  * Research: Robert et al. 1972, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Durran and Blossey 2012, Wood et al. 2014
+  * Research: Robert et al. 1972, Cullen 1989, Qian et al. 1998, MC2 (Girard et al. 2005), FSU GSM (Krishnamurti 1969, Krishnamurti et al. 2007), Melvin et al. 2010, Durran and Blossey 2012, Wood et al. 2014
 * What evidence is there for the Lorenz computational mode?
 * What evidence is there that C--P is superior to Lorenz?
 * Has anyone discussed advection schemes for C--P?
@@ -59,7 +59,9 @@ The :white_check_mark: symbol shows those articles where I've finished taking no
 
 * [Arakawa and Moorthi 1988](https://doi.org/10.1175/1520-0469(1988)045<1688:BIIVDS>2.0.CO;2)
 
-* [Cullen 1989](https://doi.org/10.1016/0021-9991(89)90211-8)
+* [Cullen 1989](https://doi.org/10.1016/0021-9991(89)90211-8) :white_check_mark:
+  * Models discontinuous fronts and jumps over orography using Lagrangian moving mesh elements (including hexahedra?)
+  * Uses C--P but seems to store T and θ at half-levels
 
 * [Tanguay et al. 1990](https://doi.org/10.1175/1520-0493(1990)118<1970:ASISLF>2.0.CO;2)
 
