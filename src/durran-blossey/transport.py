@@ -53,11 +53,11 @@ def b_position(index, delta, n):
     z = delta[1]*index[1]
     return (x, z)
 
-def init_schaer_radial(b, delta, n):
-    Ax = 25e3
-    Az = 3e3
-    x0 = -50e3
-    z0 = 9e3
+def init_schaer_radial(b, delta, n, centre=(-50e3, 9e3), half_width=(25e3,3e3)):
+    Ax = half_width[0]
+    Az = half_width[1]
+    x0 = centre[0]
+    z0 = centre[1]
     for i in range(b.shape[0]):
         for k in range(b.shape[1]):
             x, z = b_position((i,k), delta, n)
@@ -101,8 +101,9 @@ nx = 300
 nz = 50
 n = (nx, nz)
 
+U = 10.0
 b = np.zeros((nx,nz+1))
-u = np.full((nx+1,nz), 10.0)
+u = np.full((nx+1,nz), U)
 w = np.full((nx,nz+1), 0.0)
 
 init_schaer_radial(b, delta, n)
@@ -114,13 +115,27 @@ directory = "build"
 
 while t < T:
     if t % 1000 == 0:
-        with open(os.path.join(directory, str(t) + ".dat"), "w") as f:
+        with open(os.path.join(directory, str(t) + ".b.dat"), "w") as f:
             dump(b, delta, n, f)
+
+        b_analytic = np.zeros((nx,nz+1))
+        init_schaer_radial(b_analytic, delta, n, centre=(-50e3+t*U, 9e3))
+        b_error = b - b_analytic
+
+        with open(os.path.join(directory, str(t) + ".berr.dat"), "w") as f:
+            dump(b_error, delta, n, f)
 
     b = forward_euler(b, u, dt)
 
     t += dt
     print("t =",t, "min(b) =", np.amin(b), "max(b) =", np.amax(b))
 
-with open(os.path.join(directory, str(t) + ".dat"), "w") as f:
+with open(os.path.join(directory, str(t) + ".b.dat"), "w") as f:
     dump(b, delta, n, f)
+
+b_analytic = np.zeros((nx,nz+1))
+init_schaer_radial(b_analytic, delta, n, centre=(-50e3+t*U, 9e3))
+b_error = b - b_analytic
+
+with open(os.path.join(directory, str(t) + ".berr.dat"), "w") as f:
+    dump(b_error, delta, n, f)
