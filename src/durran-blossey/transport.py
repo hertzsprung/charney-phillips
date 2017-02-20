@@ -120,7 +120,7 @@ while t < T:
     b = forward_euler(b, u, dt)
 
     t += dt
-    print("t =",t)
+    print("t =",t, "min(b) =", np.amin(b), "max(b) =", np.amax(b))
 
 with open(os.path.join(directory, str(t) + ".dat"), "w") as f:
     dump(b, delta, n, f)
