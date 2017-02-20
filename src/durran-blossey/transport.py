@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import numpy as np
+import math
+import os
 
 def ghost_x(f):
     f = np.insert(f, 0, f[0,:], axis=0)
@@ -15,7 +17,7 @@ def interpolate_x(f):
     f_interp = np.zeros(np.subtract(f.shape, (1,0)))
     for i in range(f_interp.shape[0]):
         for k in range(f_interp.shape[1]):
-            f_interp[i][k] = 0.5*(f[i][k] + f[i+1][k])
+            f_interp[i,k] = 0.5*(f[i,k] + f[i+1,k])
 
     return f_interp
 
@@ -23,7 +25,7 @@ def interpolate_z(f):
     f_interp = np.zeros(np.subtract(f.shape, (0,1)))
     for i in range(f_interp.shape[0]):
         for k in range(f_interp.shape[1]):
-            f_interp[i][k] = 0.5*(f[i][k] + f[i][k+1])
+            f_interp[i,k] = 0.5*(f[i,k] + f[i,k+1])
 
     return f_interp
 
@@ -33,35 +35,92 @@ def grad_x(f, dx):
 
     for i in range(f_grad.shape[0]):
         for k in range(f_grad.shape[1]):
-            f_grad[i][k] = (f[i+1][k] - f[i][k])/dx
+            f_grad[i,k] = (f[i+1,k] - f[i,k])/dx
 
     return f_grad
 
-def b_position(index, d, n):
-    x = 0.5*d[0] + d[0]*index[0] - 0.5*n[0]*d[0]
-    z = d[1]*index[1]
+def grad_z(f, dz):
+    f_grad = np.zeros(np.subtract(f.shape, (0,1)))
+
+    for i in range(f_grad.shape[0]):
+        for k in range(f_grad.shape[1]):
+            f_grad[i,k] = (f[i,k+1] - f[i,k])/dz
+
+    return f_grad
+
+def b_position(index, delta, n):
+    x = 0.5*delta[0] + delta[0]*index[0] - 0.5*n[0]*delta[0]
+    z = delta[1]*index[1]
     return (x, z)
+
+def init_schaer_radial(b, delta, n):
+    Ax = 25e3
+    Az = 3e3
+    x0 = -50e3
+    z0 = 9e3
+    for i in range(b.shape[0]):
+        for k in range(b.shape[1]):
+            x, z = b_position((i,k), delta, n)
+            r = math.sqrt(((x-x0)/Ax)**2 + ((z-z0)/Az)**2)
+            if r <= 1:
+                b[i,k] = math.cos(math.pi*r/2)**2
+
+def dump(b, delta, n, f):
+    for i in range(b.shape[0]):
+        for k in range(b.shape[1]):
+            x, z = b_position((i,k), delta, n)
+            if abs(b[i,k]) > 1e-14:
+                print(x, z, b[i,k], file=f)
+
+def forward_euler(b, u, dt):
+    u_z = interpolate_z(ghost_z(u))
+    w_z = interpolate_z(w)
+    db_dx = grad_x(ghost_x(b), dx)
+    db_dz = grad_z(b, dz)
+    return b - dt * (interpolate_x(u_z * db_dx) + interpolate_z(ghost_z(w_z * db_dz)))
+
+def three_stage_runge_kutta(b, u, dt):
+    u_z = interpolate_z(ghost_z(u))
+    w_z = interpolate_z(w)
+    b_old = np.copy(b)
+    db_old_dx = grad_x(ghost_x(b_old), dx)
+    db_old_dz = grad_z(b_old, dz)
+
+    for corr in range(3):
+        db_dx = grad_x(ghost_x(b), dx)
+        db_dz = grad_z(b, dz)
+        b = b_old - 0.5*dt*(interpolate_x(u_z * db_dx) + interpolate_x(u_z * db_old_dx)) # TODO: w
+
+    return b
 
 dx = 1e3
 dz = 0.5e3
-d = (dx, dz)
+delta = (dx, dz)
 
 nx = 300
 nz = 50
 n = (nx, nz)
 
 b = np.zeros((nx,nz+1))
-u = np.zeros((nx+1,nz))
-w = np.zeros((nx,nz+1))
+u = np.full((nx+1,nz), 10.0)
+w = np.full((nx,nz+1), 0.0)
+
+init_schaer_radial(b, delta, n)
 
 t = 0
 T = 10000
 dt = 25
+directory = "build"
 
 while t < T:
-    u_z = interpolate_z(ghost_z(u))
-    db_dx = grad_x(ghost_x(b), dx)
-    b = b - dt * interpolate_x(u_z * db_dx)
+    if t % 1000 == 0:
+        with open(os.path.join(directory, str(t) + ".dat"), "w") as f:
+            dump(b, delta, n, f)
+
+    b = forward_euler(b, u, dt)
 
     t += dt
     print("t =",t)
+
+with open(os.path.join(directory, str(t) + ".dat"), "w") as f:
+    dump(b, delta, n, f)
