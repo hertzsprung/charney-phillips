@@ -5,7 +5,7 @@ import os
 
 def ghost_x(f):
     f = np.insert(f, 0, f[0,:], axis=0)
-    f = np.insert(f, f.shape[1], f[-1,:], axis=0)
+    f = np.insert(f, f.shape[0], f[-1,:], axis=0)
     return f
 
 def ghost_z(f):
@@ -77,6 +77,7 @@ def forward_euler(b, u, dt):
     w_z = interpolate_z(w)
     db_dx = grad_x(ghost_x(b), dx)
     db_dz = grad_z(b, dz)
+
     return b - dt * (interpolate_x(u_z * db_dx) + interpolate_z(ghost_z(w_z * db_dz)))
 
 def three_stage_runge_kutta(b, u, dt):
@@ -125,7 +126,7 @@ while t < T:
         with open(os.path.join(directory, str(t) + ".berr.dat"), "w") as f:
             dump(b_error, delta, n, f)
 
-    b = forward_euler(b, u, dt)
+    b = three_stage_runge_kutta(b, u, dt)
 
     t += dt
     print("t =",t, "min(b) =", np.amin(b), "max(b) =", np.amax(b))
