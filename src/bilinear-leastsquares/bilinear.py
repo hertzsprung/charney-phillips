@@ -9,7 +9,8 @@ class PositionStencil:
         i, k = index
 
         self.origin = b_position(index)
-        self.points = [(0.0, 0.0)]
+        self.points = []
+#        self.points = [(0.0, 0.0)]
 
         if i > 0:
             self.add(b, (i-1, k))
@@ -31,16 +32,12 @@ class PositionStencil:
         self.points.append(position)
 
     def to_matrix(self):
-#        terms = 4 if len(self.points) > 3 else 3
-        terms = 3
-        B = np.zeros((len(self.points), terms))
+        B = np.zeros((len(self.points), 3))
 
         for pointi, point in enumerate(self.points):
             B[pointi, 0] = 1
             B[pointi, 1] = point[0]
             B[pointi, 2] = point[1]
-#            if terms > 3:
-#                B[pointi, 3] = point[0]*point[1]
 
         return B
 
@@ -48,7 +45,8 @@ class ValueStencil:
     def __init__(self, b, index):
         i, k = index
 
-        self.values = [b[i, k]]
+#        self.values = [b[i, k]]
+        self.values = []
 
         if i > 0:
             self.add(b, (i-1, k))
