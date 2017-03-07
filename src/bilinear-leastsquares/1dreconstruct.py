@@ -33,17 +33,24 @@ def c_position(index):
     z = dz*index[1]
     return (x, z+0.5*dz)
 
+def calculate_reconstruction_coeffs():
+    B = np.zeros((2, 2))
+    B[0, 0] = 1
+    B[0, 1] = -0.5*dz
+    B[1, 0] = 1
+    B[1, 1] = 0.5*dz
+
+    Binv = la.pinv(B)
+    return Binv[0]
+
 def reconstruct(b):
     c = np.zeros((b.shape[0], b.shape[1]-1))
-    # create a matrix and invert it
-    # we can reuse the same coefficients for every cell
+    coeffs = calculate_reconstruction_coeffs()
     for i in range(c.shape[0]):
-        for k in range(b.shape[1]):
-            pass
-#            b_values = create a list of stencil values using b
-#            c[i,k] = np.dot(coeffs, b_values)
+        for k in range(c.shape[1]):
+            b_values = [b[i,k], b[i,k+1]]
+            c[i,k] = np.dot(coeffs, b_values)
     return c
-
 
 dx = 1e3
 dz = 0.5e3
