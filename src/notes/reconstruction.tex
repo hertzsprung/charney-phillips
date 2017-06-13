@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{siunitx}
+
+\newcommand{\Co}{C}
+\newcommand{\vect}{\mathbf}
+\newcommand{\iu}{{i\mkern1mu}}
+\newcommand{\iunit}{\boldsymbol{\hat \imath}}
+\newcommand{\junit}{\boldsymbol{\hat \jmath}}
+\newcommand{\kunit}{\boldsymbol{\hat k}}
+\newcommand{\Sf}{\vect{S}_f}
+\newcommand{\Mag}[1]{\lvert #1 \rvert}
+\newcommand{\magSf}{\Mag{\Sf}}
+\newcommand{\gunit}{\vect{\hat{g}}}
+\newcommand{\nunit}{\vect{\hat{n}}}
+\newcommand{\TODO}[1]{\textcolor{purple}{TODO: \emph{#1}}}
+
+\title{Charney--Phillips cell centre reconstruction}
+\author{James Shaw}
+
+\begin{document}
+\maketitle
+
+\noindent \texttt{volVectorField x = fvc::reconstruct(surfaceScalarField xf)} is implemented as
+\begin{align}
+	x = \left( \sum_f \frac{1}{\Mag{\Sf}} \Sf \otimes \Sf \right)^{-1}
+	\cdot
+	\left( \frac{1}{\Mag{\Sf}} \Sf x_f \right)
+\end{align}
+where $x$ is defined at cell centres and $x_f$ is defined at face centres.  The surface area vector $\Sf$ has magnitude equal to the area of face $f$ and is directed outward normal to $f$.
+Cell centre potential temperature $\theta_C$ is reconstructed from surrounding values of $\theta_f$
+\begin{align}
+	\theta_C = \gunit \cdot 
+	\left\{
+		\left( \sum_f \frac{1}{\magSf} \Sf \otimes \Sf \right)^{-1}
+		\cdot
+		\left( \sum_f \frac{1}{\magSf} \Sf \left( \theta_f \gunit \cdot \nunit \Mag{\Sf} \right) \right)
+	\right\}
+%
+\intertext{where $\gunit$ is the unit vector of gravitational acceleration and the surface normal unit vector $\nunit = \Sf / \Mag{\Sf}$.  Simplifying we get}
+%
+	\theta_C = \gunit \cdot 
+	\left\{
+		\left( \sum_f \frac{1}{\magSf} \Sf \otimes \Sf \right)^{-1}
+		\cdot
+		\left( \sum_f \frac{1}{\magSf} \Sf \left( \theta_f \gunit \cdot \Sf \right) \right)
+	\right\}
+\end{align}
+Notice that $\theta_f \gunit \cdot \Sf / \magSf = 0$ on vertical faces and $\Mag{\theta_f \gunit \cdot \Sf} / \magSf = \theta_f$ on horizontal faces.
+
+Now consider a two-dimensional cell in the $x$--$z$ plane having dimensions $1 \times 1$ such that $\magSf = 1\:\forall\:f$.  The top, right, bottom and left surface area vectors are $\vect{S}_T = \kunit$, $\vect{S}_R = \iunit$, $\vect{S}_B = - \kunit$ and $\vect{S}_L = - \iunit$ respectively.
+\begin{align}
+	\theta_C &= \gunit \cdot 
+	\left\{
+		\left( 
+			\begin{bmatrix}0 & 0 \\ 0 & 1\times1\end{bmatrix} + 
+			\begin{bmatrix}1\times1 & 0 \\ 0 & 0\end{bmatrix} + 
+			\begin{bmatrix}0 & 0 \\ 0 & -1\times-1\end{bmatrix} + 
+			\begin{bmatrix}-1\times-1 & 0 \\ 0 & 0\end{bmatrix}
+		\right)^{-1}
+		\cdot
+		\left( \theta_B + \theta_T \right) \kunit
+	\right\} \\
+%
+	&= \begin{bmatrix}0 \\ -1\end{bmatrix} \cdot
+	\left\{
+		\begin{bmatrix}\frac{1}{2} & 0 \\ 0 & \frac{1}{2}\end{bmatrix}
+		\cdot
+		\begin{bmatrix}0 \\ \theta_B + \theta_T\end{bmatrix}
+	\right\} \\
+%
+	&= \begin{bmatrix}0 \\ \frac{\theta_B + \theta_T}{2} \end{bmatrix}
+\end{align}
+
+\end{document}
