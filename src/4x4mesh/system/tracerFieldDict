@@ -1,0 +1,11 @@
+FoamFile {
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object	setScalarOverOrographyDict;
+}
+
+type		schaerRadial;
+centre      (1.5 0 2);
+halfWidth   (0.5 1 0.5);
