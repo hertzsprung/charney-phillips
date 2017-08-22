@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="627.23881"
+     inkscape:cx="630.09595"
      inkscape:cy="449.38414"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1156"
      inkscape:window-height="815"
-     inkscape:window-x="637"
-     inkscape:window-y="0"
+     inkscape:window-x="536"
+     inkscape:window-y="84"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -219,11 +219,11 @@
          id="tspan4553"
          x="258.53571"
          y="232.74405"
-         style="font-style:normal;font-weight:bold;stroke-width:0.26458332px">with horizontal</tspan><tspan
+         style="font-style:normal;font-weight:normal;stroke-width:0.26458332px">with horizontal</tspan><tspan
          sodipodi:role="line"
          x="258.53571"
          y="238.91766"
-         style="font-style:normal;font-weight:bold;stroke-width:0.26458332px"
+         style="font-style:normal;font-weight:normal;stroke-width:0.26458332px"
          id="tspan4557">flow</tspan></text>
     <text
        xml:space="preserve"
@@ -414,14 +414,12 @@
          id="tspan4682"
          x="216.58035"
          y="264.49402"
-         style="font-weight:bold;stroke-width:0.26458332px">with θ</tspan><tspan
+         style="font-weight:normal;stroke-width:0.26458332px">with θ</tspan><tspan
          sodipodi:role="line"
          x="217.36653"
          y="270.66763"
-         style="stroke-width:0.26458332px"
-         id="tspan4686"><tspan
-   style="font-weight:bold"
-   id="tspan4688">perturbation</tspan> </tspan></text>
+         style="stroke-width:0.26458332px;font-weight:normal"
+         id="tspan4686">perturbation</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:4.93888855px;line-height:125%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -481,7 +479,7 @@
          id="tspan4718"
          x="125.86607"
          y="117.61251"
-         style="stroke-width:0.26458332px">linearCP</tspan></text>
+         style="stroke-width:0.26458332px;fill:#999999;font-style:italic">linearCP</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 122.84226,185.875 -7.55952,-7.18154"

@@ -1,0 +1,38 @@
+FoamFile {
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+
+interpolationSchemes {
+    default     none;
+    interpolate(T) linear;
+    interpolate(grad(Tf)) linear;
+    interpolate(grad(Tf_0)) linear;
+}
+
+divSchemes {
+    default     none;
+}
+
+gradSchemes {
+    default     none;
+}
+
+snGradSchemes {
+    default     none;
+}
+
+laplacianSchemes {
+    default     none;
+}
+
+ddtSchemes {
+    default     none;
+}
+
+fluxRequired {
+    default     no;
+}
