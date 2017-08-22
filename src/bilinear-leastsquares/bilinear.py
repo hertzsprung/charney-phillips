@@ -9,8 +9,7 @@ class PositionStencil:
         i, k = index
 
         self.origin = b_position(index)
-        self.points = []
-#        self.points = [(0.0, 0.0)]
+        self.points = [(0.0, 0.0)]
 
         if i > 0:
             self.add(b, (i-1, k))
@@ -45,8 +44,7 @@ class ValueStencil:
     def __init__(self, b, index):
         i, k = index
 
-#        self.values = [b[i, k]]
-        self.values = []
+        self.values = [b[i, k]]
 
         if i > 0:
             self.add(b, (i-1, k))
@@ -62,6 +60,39 @@ class ValueStencil:
 
     def add(self, b, index):
         self.values.append(b[index[0], index[1]])
+
+class MultiplierStencil:
+    def __init__(self, b, index):
+        i, k = index
+
+        self.multipliers = [1]
+
+        if i > 0:
+            self.add(1)
+
+        if i < b.shape[0]-1:
+            self.add(1)
+
+        if k > 0:
+            self.add(1)
+
+        if k < b.shape[1]-1:
+            self.add(1)
+
+    def add(self, m):
+        self.multipliers.append(m)
+
+    def multiplyRows(self, B):
+        for i, m in enumerate(self.multipliers):
+            B[i] *= m
+
+        return B
+
+    def multiplyColumns(self, B):
+        for i, m in enumerate(self.multipliers):
+            B[:,i] *= m
+
+        return B
 
 def init_schaer_radial(b, centre=(-50e3, 9e3), half_width=(25e3,3e3)):
     Ax = half_width[0]
@@ -101,11 +132,11 @@ def grad(b):
 
     return grad_b
 
-def three_stage_runge_kutta(b, Uf, dt):
+def two_stage_runge_kutta(b, Uf, dt):
     b_old = np.copy(b)
     grad_b_old = grad(b_old)
 
-    for corr in range(3):
+    for corr in range(2):
         grad_b = grad(b)
 
         for i in range(b.shape[0]):
@@ -119,9 +150,10 @@ def create_Binv_matrix(b):
     for i in range(b.shape[0]):
         for k in range(b.shape[1]):
             stencil = PositionStencil(b, (i, k))
-            B = stencil.to_matrix()
+            multipliers = MultiplierStencil(b, (i, k))
+            B = multipliers.multiplyRows(stencil.to_matrix())
 
-            Binv[i,k] = la.pinv(B)                
+            Binv[i,k] = multipliers.multiplyColumns(la.pinv(B))
 
     return Binv
 
@@ -157,7 +189,7 @@ while t < T:
         with open(os.path.join(directory, str(t) + ".berr.dat"), "w") as f:
             dump(b_error, f)
 
-    b = three_stage_runge_kutta(b, Uf, dt)
+    b = two_stage_runge_kutta(b, Uf, dt)
 
     t += dt
     print("t =",t, "min(b) =", np.amin(b), "max(b) =", np.amax(b))
