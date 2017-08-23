@@ -7,69 +7,88 @@ import numpy as np
 import numpy.linalg as la
 import math
 import os
+from grad_schemes import *
 
-def b_position(index):
-    x = 0.5*delta[0] + delta[0]*index[0] - 0.5*n[0]*delta[0]
-    z = delta[1]*index[1]
-    return (x, z)
+class Mesh:
+    def __init__(self, nCells, delta):
+        self.delta = delta
+        nx, nz = nCells
+        self.shape = (nx, nz+1) # for Charney--Phillips staggering
 
-def dump_scalar(b, f):
-    for i in range(b.shape[0]):
-        for k in range(b.shape[1]):
-            x, z = b_position((i,k))
-            if abs(b[i,k]) > 1e-14:
-                print(x, z, b[i,k], file=f)
+    def position(self, index):
+        x = 0.5*self.delta[0] + self.delta[0]*index[0] - 0.5*self.shape[0]*self.delta[0]
+        z = self.delta[1]*index[1]
+        return (x, z)
 
-def dump_vector(b, f):
-    for i in range(b.shape[0]):
-        for k in range(b.shape[1]):
-            x, z = b_position((i,k))
-            if la.norm(b[i,k]) > 1e-14:
-                print(x, z, b[i,k][0], b[i,k][1], file=f)
+class ScalarField:
+    def __init__(self, mesh, initialiser):
+        self.mesh = mesh
+        self.f = np.zeros(self.mesh.shape)
 
-def init_schaer_radial(b, centre=(-50e3, 9e3), half_width=(25e3,3e3)):
-    Ax = half_width[0]
-    Az = half_width[1]
-    x0 = centre[0]
-    z0 = centre[1]
-    for i in range(b.shape[0]):
-        for k in range(b.shape[1]):
-            x, z = b_position((i,k))
-            r = math.sqrt(((x-x0)/Ax)**2 + ((z-z0)/Az)**2)
-            if r <= 1:
-                b[i,k] = math.cos(math.pi*r/2)**2
+        for i in range(self.f.shape[0]):
+            for k in range(self.f.shape[1]):
+                self.f[i,k] = initialiser(self.mesh.position((i, k))) 
 
-def init_schaer_radial_grad(b, centre=(-50e3, 9e3), half_width=(25e3,3e3)):
-    Ax = half_width[0]
-    Az = half_width[1]
-    x0 = centre[0]
-    z0 = centre[1]
+    def dumpTo(self, filename):
+        with open(filename, "w") as file:
+            for i in range(self.f.shape[0]):
+                for k in range(self.f.shape[1]):
+                    x, z = self.mesh.position((i,k))
+                    if abs(self.f[i,k]) > 1e-14:
+                        print(x, z, self.f[i,k], file=file)
 
-    for i in range(b.shape[0]):
-        for k in range(b.shape[1]):
-            x, z = b_position((i,k))
-            r = math.sqrt(((x-x0)/Ax)**2 + ((z-z0)/Az)**2)
-            if r <= 1:
-                b[i,k] = [-math.sin(math.pi*(x-x0)/Ax), -math.sin(math.pi*(z-z0)/Az)]
+class VectorField:
+    def __init__(self, mesh, initialiser):
+        self.mesh = mesh
+        self.f = np.full(self.mesh.shape, (0.0, 0.0), dtype="2f")
 
-dx = 1e3
-dz = 0.5e3
-delta = (dx, dz)
+        for i in range(self.f.shape[0]):
+            for k in range(self.f.shape[1]):
+                self.f[i,k] = initialiser(self.mesh.position((i, k))) 
 
-nx = 300
-nz = 50
-n = (nx, nz)
+    def dumpTo(self, filename):
+        with open(filename, "w") as file:
+            for i in range(self.f.shape[0]):
+                for k in range(self.f.shape[1]):
+                    x, z = self.mesh.position((i,k))
+                    if la.norm(self.f[i,k]) > 1e-14:
+                        print(x, z, self.f[i,k][0], self.f[i,k][1], file=file)
+
+class SchaerRadial:
+    def __init__(self, centre=(-50e3, 9e3), halfWidth=(25e3,3e3)):
+        self.centre = centre
+        self.halfWidth = halfWidth
+
+    def value(self, p):
+        Ax = self.halfWidth[0]
+        Az = self.halfWidth[1]
+        x0 = self.centre[0]
+        z0 = self.centre[1]
+        x, z = p
+        r = math.sqrt(((x-x0)/Ax)**2 + ((z-z0)/Az)**2)
+        if r <= 1:
+            return math.cos(math.pi*r/2)**2
+        else:
+            return 0
+    
+    def gradient(self, p):
+        Ax = self.halfWidth[0]
+        Az = self.halfWidth[1]
+        x0 = self.centre[0]
+        z0 = self.centre[1]
+        x, z = p
+        r = math.sqrt(((x-x0)/Ax)**2 + ((z-z0)/Az)**2)
+        if r <= 1:
+            return [-math.sin(math.pi*(x-x0)/Ax), -math.sin(math.pi*(z-z0)/Az)]
+        else:
+            return 0
 
 directory = "build"
+mesh = Mesh(nCells=(300, 50), delta=(1e3, 0.5e3))
+tracer = SchaerRadial()
+b = ScalarField(mesh, tracer.value)
+grad_b_analytic = VectorField(mesh, tracer.gradient)
 
-b = np.zeros((nx,nz+1))
-grad_b_ana = np.full(b.shape, (0.0, 0.0), dtype="2f")
+b.dumpTo(os.path.join(directory, 'b.dat'))
+grad_b_analytic.dumpTo(os.path.join(directory, 'grad_b_analytic.dat'))
 
-init_schaer_radial(b)
-init_schaer_radial_grad(grad_b_ana)
-
-with open(os.path.join(directory, "b.dat"), "w") as f:
-    dump_scalar(b, f)
-
-with open(os.path.join(directory, "grad_b_ana.dat"), "w") as f:
-    dump_vector(grad_b_ana, f)

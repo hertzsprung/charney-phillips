@@ -8,4 +8,4 @@ set yrange [5e3:13e3]
 unset colorbox
 
 plot 'build/b.dat' using 1:2:3 notitle with points palette pt 7 ps 3.5, \
-     'build/grad_b_ana.dat' using 1:2:($3*500):($4*500) with vectors head filled
+     'build/grad_b_analytic.dat' using 1:2:($3*500):($4*500) with vectors head filled
