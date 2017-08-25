@@ -9,17 +9,6 @@ class Stencil:
         self.points = [(x - origin[0], z - origin[1]) for x, z in self.points]
         self.f = f
 
-    def matrix(self):
-        B = np.zeros((len(self.points), 3))
-
-        for pointi, point in enumerate(self.points):
-
-            B[pointi, 0] = 1
-            B[pointi, 1] = point[0]
-            B[pointi, 2] = point[1]
-
-        return B
-
     def values(self):
         return [self.f[index] for index in self.indices]
 
@@ -39,32 +28,25 @@ class StencilType:
 
         return Stencil(indices, f, index)
 
-class Grad4Point:
-    def __init__(self):
-        self.stencilType = StencilType([
-                (-1, 0),
-                ( 1, 0),
-                ( 0,-1),
-                ( 0, 1)
-        ])
+class GradScheme:
+    def __init__(self, stencilType, basis):
+        self.stencilType = stencilType
+        self.basis = basis
 
     def grad(self, f):
         Binv = np.full(f.shape, None, dtype='O')
         for i in range(f.shape[0]):
             for k in range(f.shape[1]):
                 stencil = self.stencilType.stencilFor(f, (i, k))
-                B = stencil.matrix()
-
-                Binv[i,k] = la.pinv(B)
+                Binv[i,k] = self.basis.inverseMatrix(stencil.points)
 
         def initialiser(mesh, index):
-            i, k = index
             stencil = self.stencilType.stencilFor(f, index)
-
-            a_2 = np.dot(Binv[i,k][1], stencil.values()) # d/dx
-            a_3 = np.dot(Binv[i,k][2], stencil.values()) # d/dz
-
-            return (a_2, a_3)
+            return self.basis.gradient(Binv[index], stencil.values())
 
         return VectorField(f.mesh, initialiser)
 
+    def __repr__(self):
+        return "grad_{points}_{basis}".format(
+                points=len(self.stencilType.indices),
+                basis=self.basis.__class__.__name__)
