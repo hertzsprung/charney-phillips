@@ -2,80 +2,67 @@ import numpy as np
 import numpy.linalg as la
 from mesh import *
 
-class PositionStencil:
-    def __init__(self, f, index):
-        i, k = index
-        mesh = f.mesh
+class Stencil:
+    def __init__(self, indices, f, origin):
+        self.indices = indices
+        self.points = [f.mesh.position(index) for index in indices]
+        self.points = [(x - origin[0], z - origin[1]) for x, z in self.points]
+        self.f = f
 
-        self.origin = mesh.position(index)
-        self.points = []
-
-        if i > 0:
-            self.add(mesh, (i-1, k))
-
-        if i < f.shape[0]-1:
-            self.add(mesh, (i+1, k))
-
-        if k > 0:
-            self.add(mesh, (i, k-1))
-
-        if k < f.shape[1]-1:
-            self.add(mesh, (i, k+1))
-
-    def add(self, mesh, index):
-        position = list(mesh.position(index))
-        position[0] -= self.origin[0]
-        position[1] -= self.origin[1]
-
-        self.points.append(position)
-
-    def to_matrix(self):
+    def matrix(self):
         B = np.zeros((len(self.points), 3))
 
         for pointi, point in enumerate(self.points):
+
             B[pointi, 0] = 1
             B[pointi, 1] = point[0]
             B[pointi, 2] = point[1]
 
         return B
 
-class ValueStencil:
-    def __init__(self, f, index):
-        i, k = index
+    def values(self):
+        return [self.f[index] for index in self.indices]
 
-        self.values = []
+class StencilType:
+    def __init__(self, indices):
+        self.indices = indices
 
-        if i > 0:
-            self.add(f, (i-1, k))
+    def stencilFor(self, f, index):
+        indices = []
 
-        if i < f.shape[0]-1:
-            self.add(f, (i+1, k))
+        for p in self.indices:
+            i = index[0] + p[0]
+            k = index[1] + p[1]
 
-        if k > 0:
-            self.add(f, (i, k-1))
+            if i >= 0 and i < f.shape[0] and k >=0 and k < f.shape[1]:
+                indices.append((i,k))
 
-        if k < f.shape[1]-1:
-            self.add(f, (i, k+1))
-
-    def add(self, f, index):
-        self.values.append(f[index[0], index[1]])
+        return Stencil(indices, f, index)
 
 class Grad4Point:
+    def __init__(self):
+        self.stencilType = StencilType([
+                (-1, 0),
+                ( 1, 0),
+                ( 0,-1),
+                ( 0, 1)
+        ])
+
     def grad(self, f):
         Binv = np.full(f.shape, None, dtype='O')
         for i in range(f.shape[0]):
             for k in range(f.shape[1]):
-                stencil = PositionStencil(f, (i, k))
-                B = stencil.to_matrix()
+                stencil = self.stencilType.stencilFor(f, (i, k))
+                B = stencil.matrix()
 
                 Binv[i,k] = la.pinv(B)
 
         def initialiser(mesh, index):
             i, k = index
-            stencil = ValueStencil(f, index)
+            stencil = self.stencilType.stencilFor(f, index)
 
-            a_2 = np.dot(Binv[i,k][1], stencil.values) # d/dx
-            a_3 = np.dot(Binv[i,k][2], stencil.values) # d/dz
+            a_2 = np.dot(Binv[i,k][1], stencil.values()) # d/dx
+            a_3 = np.dot(Binv[i,k][2], stencil.values()) # d/dz
 
             return (a_2, a_3)
 
