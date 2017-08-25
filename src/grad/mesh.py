@@ -43,6 +43,12 @@ class VectorField:
             for k in range(self.shape[1]):
                 self.f[i,k] = initialiser(self.mesh, (i, k))
 
+    def component(self, componentIndex):
+        def initialiser(mesh, meshIndex):
+            return self.f[meshIndex][componentIndex]
+
+        return ScalarField(self.mesh, initialiser)
+
     def dumpTo(self, filename):
         with open(filename, "w") as file:
             for i in range(self.shape[0]):
